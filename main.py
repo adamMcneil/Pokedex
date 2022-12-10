@@ -1,36 +1,22 @@
+import fileinput
 from multiprocessing.connection import Connection
-import mysql.connector
-from mysql.connector import Error
+from sql_server import create_server_connection, make_sql_query
 
-# connects to the server and returns the connection for later queries
-
-
-def create_server_connection(host_name, user_name, user_password) -> Connection:
-    connection = None
-    try:
-        connection = mysql.connector.connect(
-            host=host_name,
-            user=user_name,
-            passwd=user_password
-        )
-        print("mysql database connection successful")
-    except Error as err:
-        print(f"error: '{err}'")
-    return connection
-
-# use this to get the results of sql query return as a list where query is just a string like a normal sql query
+# INSERT INTO `pokemon` (name, pokedex_number, hp, attack, special_attack, defence, special_defence, speed, ability1)
+# VALUES('mew', 151, 1, 1, 1, 1, 1, 1, 'transform')
+# pokedex_number, name, base_stat, hp, attack, special_attack, defence, special_defence, speed, generation, isLegendary
 
 
-def make_sql_query(connection: Connection, query: str):
-    cursor = connection.cursor()
-    try:
-        cursor.execute(query)
-        result = cursor.fetchall()
-        print("query successful")
-        return result
-    except Error as err:
-        print(f"error: '{err}'")
-    return
+def add_pokemon(connection: Connection) -> None:
+
+    database = "`pokemon`"
+    column_order = "(pokedex_number, name, type_1, type_2, base_stat, hp, attack, special_attack, defence, special_defence, speed, generation, isLegendary)"
+
+    for line in fileinput.input(files="sql_pokemon.csv"):
+        query = "INSERT INTO " + database + " " + \
+            column_order + " VALUES (" + line + ");"
+        # print(query)
+        make_sql_query(connection, query)
 
 
 # it is the password you set up when you install mysql
@@ -38,14 +24,14 @@ password = "Pokemon2022!"
 # database you want to use
 database = "pokedex"
 
-query = "select * from pokemon where overall_stat < 200 order by overall_stat;"
+query = "select * from pokemon where base_stat < 200 order by base_stat;"
 
 # connect to the server
 connection = create_server_connection("localhost", "root", password)
 
 # specify you are using the pokedex database on the server
 make_sql_query(connection, "USE " + database)
-
+add_pokemon(connection)
 # then store the results of the query in result and print the list, results.
 results = make_sql_query(connection, query)
 for result in results:

@@ -10,11 +10,11 @@ DROP TABLE IF EXISTS `ability`;
 DROP TABLE IF EXISTS `level_moves`;
 
 CREATE TABLE `pokemon` (
-    `p_number`            int             not null,
+    `pokedex_number`            int             not null,
     `name`                varchar(40)     not null unique,
     `type_1`              varchar(20)     ,
     `type_2`              varchar(20)     ,
-    `overall_stat`        int             not null,
+    `base_stat`           int             not null,
     `hp`                  int             not null,
     `attack`              int             not null,
     `special_attack`      int             not null,
@@ -60,12 +60,17 @@ CREATE TABLE `level_moves`(
 );
 
 
-LOAD DATA INFILE '/var/lib/mysql-files/pokemondata.csv' INTO TABLE pokemon 
-FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' ;
+-- LOAD DATA INFILE '/var/lib/mysql-files/pokemondata.csv' INTO TABLE pokemon 
+-- FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' ;
 
-select * from pokemon;
+-- select * from pokemon;
 
--- INSERT INTO `pokemon` (name, pokedex_number, hp, attack, special_attack, defence, special_defence, speed, ability1)
--- VALUES ('mew', 151, 1, 1, 1, 1, 1, 1, 'transform');
+-- INSERT INTO `pokemon` (pokedex_number, name, base_stat, hp, attack, special_attack, defence, special_defence, speed, generation, isLegendary)
+-- VALUES (151, 'mew', 600, 1,1,1,1,1,1,1,'false');
+
+-- INSERT INTO `pokemon` (pokedex_number, name, base_stat, hp, attack, special_attack, defence, special_defence, speed, generation, isLegendary) 
+-- VALUES (720,'HoopaHoopa Unbound','Psychic','Dark',680,80,160,60,170,130,80,6,'True');
+
+
 
 
