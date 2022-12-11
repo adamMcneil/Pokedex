@@ -34,10 +34,16 @@ CREATE TABLE `moves` (
     `description`       varchar(500)    ,
     `power`             int             ,
     `accury`            int             ,
-    `pp`                int             not null ,
-    `tm_number`         int             unique,
+    `pp`                int             ,
+    `tm_number`         int             ,
     `probability`       int             ,
     `generation`        int
+);
+
+CREATE TABLE `level_moves`(
+    `pokemon_number`    int          not null, 
+    `move`              char(20)     not null, 
+    `level`             int
 );
 
 CREATE TABLE `evolutions`(
@@ -52,11 +58,6 @@ CREATE TABLE `generations`(
     `name`      varchar(20)     not null
 );
 
-CREATE TABLE `level_moves`(
-    `pokemon_number`    int          not null, 
-    `move`              char(20)     not null, 
-    `level`             int
-);
 
 
 -- LOAD DATA INFILE '/var/lib/mysql-files/pokemondata.csv' INTO TABLE pokemon 

@@ -26,7 +26,7 @@ def make_sql_query(connection: Connection, query: str):
     try:
         cursor.execute(query)
         result = cursor.fetchall()
-        print("query successful")
+        # print("query successful")
         return result
     except Error as err:
         print(f"error: '{err}'")

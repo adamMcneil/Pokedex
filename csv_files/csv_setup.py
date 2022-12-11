@@ -16,3 +16,4 @@ def add_quotes(file_name: str, string_indecies: list) -> None:
 
 add_quotes("pokemon.csv", [1, 2, 3, 12])
 add_quotes("move.csv", [0, 1, 2, 3])
+add_quotes("pokemon_move.csv", [1])
