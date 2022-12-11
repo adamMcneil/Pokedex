@@ -26,19 +26,18 @@ CREATE TABLE `pokemon` (
     
 );
 
-/*`ability1`            varchar(20)     ,
-    `ability2`            varchar(20)     ,
-    `generation`          int             ,
-    `class`               int   */          
-
+-- Name,Type,Category,Effect,Power,Acc,PP,TM,Prob.(%),Gen
 CREATE TABLE `moves` (
     `name`              varchar(20)     not null unique,
-    `type`              varchar(20)     not null unique,
+    `type`              varchar(20)     not null ,
+    `category`          varchar(20)     ,
     `description`       varchar(500)    ,
     `power`             int             ,
     `accury`            int             ,
     `pp`                int             not null ,
-    `tm_number`         int             unique   
+    `tm_number`         int             unique,
+    `probability`       int             ,
+    `generation`        int
 );
 
 CREATE TABLE `evolutions`(
@@ -68,8 +67,8 @@ CREATE TABLE `level_moves`(
 -- INSERT INTO `pokemon` (pokedex_number, name, base_stat, hp, attack, special_attack, defence, special_defence, speed, generation, isLegendary)
 -- VALUES (151, 'mew', 600, 1,1,1,1,1,1,1,'false');
 
--- INSERT INTO `pokemon` (pokedex_number, name, base_stat, hp, attack, special_attack, defence, special_defence, speed, generation, isLegendary) 
--- VALUES (720,'HoopaHoopa Unbound','Psychic','Dark',680,80,160,60,170,130,80,6,'True');
+INSERT INTO `moves` (name, type, category, description, power, accury, pp, tm_number, probability, generation) 
+VALUES ('Absorb','Grass','Special','User recovers half the HP inflicted on opponent.',20,100,25,NULL,NULL,1);
 
 
 
