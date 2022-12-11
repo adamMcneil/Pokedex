@@ -31,8 +31,18 @@ def insert_all_tables(connection: Connection, database: str, password: str) -> N
     learn_table = "level_moves"
     learn_column_order = "(pokemon_number, move)"
 
+    # data for generations and region names
+    generation_csv_file = "csv_files/sql_generation.csv"
+    generation_table = "generations"
+    generation_column_order = "(number,name)"
+
     # specify you are using the pokedex database on the server
+
     make_sql_query(connection, "USE " + database)
+
+    insert_csv_file(connection, generation_csv_file,
+                    generation_table, generation_column_order)
+    print("Added all of the genrations")
 
     insert_csv_file(connection, pokemon_csv_file,
                     pokemon_table, pokemon_column_order)

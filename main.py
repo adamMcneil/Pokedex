@@ -8,7 +8,7 @@ from fill_tables import insert_all_tables
 password = "Pokemon2022!"
 # database you want to use
 database = "pokedex"
-query = "select * from level_moves;"
+query = "select * from pokemon;"
 
 # gets all pokemon and all their moves
 get_pokemon_moves = "select pokemon.pokedex_number, pokemon.name, level_moves.move \
@@ -24,6 +24,11 @@ get_all_pokemon_know_move = "select pokemon.pokedex_number, pokemon.name, level_
                             from pokemon inner join level_moves on pokemon.pokedex_number=level_moves.pokemon_number \
                             where move = \'Heat Crash\'"
 
+# get all pokemon from a generation
+get_all_pokemon_from_generation = "select * \
+                                    from pokemon \
+                                    where generation = 2"
+
 # connect to the server
 connection = create_server_connection("localhost", "root", password)
 
@@ -33,6 +38,6 @@ make_sql_query(connection, "USE " + database)
 insert_all_tables(connection, database, password)
 
 # then store the results of the query in result and print the list, results.
-results = make_sql_query(connection, get_all_pokemon_know_move)
+results = make_sql_query(connection, get_all_pokemon_from_generation)
 for result in results:
     print(result)
