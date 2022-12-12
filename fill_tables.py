@@ -22,7 +22,7 @@ def insert_all_tables(connection: Connection, database: str, password: str) -> N
     pokemon_column_order = "(pokedex_number, name, type_1, type_2, base_stat, hp, attack, special_attack, defence, special_defence, speed, generation, isLegendary)"
 
     # move data for insert
-    move_csv_file = "csv_files/sql_move.csv"
+    move_csv_file = "csv_files/sql_good_move.csv"
     move_table = "moves"
     move_column_order = "(name, type, category, description, power, accury, pp, tm_number, probability, generation)"
 

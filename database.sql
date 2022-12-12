@@ -37,13 +37,13 @@ CREATE TABLE `pokemon` (
 
 -- Name,Type,Category,Effect,Power,Acc,PP,TM,Prob.(%),Gen
 CREATE TABLE `moves` (
-    `name`              varchar(20)     not null unique,
+    `name`              varchar(40)     not null unique,
     `type`              varchar(20)     not null,
     `category`          varchar(20)     not null,
     `description`       varchar(500)    ,
     `power`             int             ,
     `accury`            int             ,
-    `pp`                int             not null,
+    `pp`                int             ,
     `tm_number`         int             ,
     `probability`       int             ,
     `generation`        int             not null,
@@ -53,8 +53,7 @@ CREATE TABLE `moves` (
 CREATE TABLE `level_moves`(
     `pokemon_number`    int          not null, 
     `move`              char(20)     not null, 
-    `level`             int,
-    Foreign Key (move) references moves(name)
+    `level`             int
 );
 
 CREATE TABLE `evolutions`(
